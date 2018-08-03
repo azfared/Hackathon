@@ -60,7 +60,20 @@ public class WebService : System.Web.Services.WebService {
 
     [WebMethod]
     [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
-    public void getMovementOrder()
+    public void getMovementOrder(string campID) 
+    { 
+        //update the campID 
+        clSys mu = new clSys();
+        string Comm1 = "update camps set f5='1' where item_id='"+campID+"'";
+        mu.ExecuteNonQuery(Comm1);
+        //select the new Camp
+        String dataStr = getCurrentOrder();
+        HttpContext.Current.Response.Write(dataStr); 
+    }
+    
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
+    public void getMovementOrderOrg()
     {
         clSys mu = new clSys();
         string Comm1 = "select f2 movementTime from moveTime" ;
@@ -75,6 +88,7 @@ public class WebService : System.Web.Services.WebService {
 
         DateTime moveTimeDate = new DateTime(int.Parse(dateValue[2]), int.Parse(dateValue[1]), int.Parse(dateValue[0]),
                hours, mins, 0);
+        
         if (DateTime.Now > moveTimeDate)
         {
 
@@ -87,12 +101,14 @@ public class WebService : System.Web.Services.WebService {
             
         }
         R1.Close();
+        
         HttpContext.Current.Response.Write(dataStr);   
     }
 
     private string getCurrentOrder() 
     { 
         clSys mu = new clSys();
+
         string Comm1 = "select top 1 item_id campID, f2 campName,  f3 personID, f4 moveOrder from camps where f5 is null"
             +" order by convert(int, f4) \n";
         System.Data.Common.DbDataReader R1 = mu.ExecuteReader(Comm1);
@@ -104,7 +120,7 @@ public class WebService : System.Web.Services.WebService {
             while (R1.Read())
             {
                 //dataStr += R1["campName"] + ", " + R1["personID"] + ", " + R1["moveOrder"] + " \n";
-                dataStr = "{\"campID\":\"" + R1["campID"] + "\",\"campName\":\"" + R1["campName"] + "\", \"moveOrder\":\"" + R1["moveOrder"] + "\" } ";
+                dataStr = "{\"move\":\"1\", \"campID\":\"" + R1["campID"] + "\",\"campName\":\"" + R1["campName"] + "\", \"moveOrder\":\"" + R1["moveOrder"] + "\" } ";
                 
             }
         }
