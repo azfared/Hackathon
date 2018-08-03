@@ -13,7 +13,7 @@ public class AlarmReceiver extends BroadcastReceiver
 		//System.out.println("Hello");
 		if ("android.intent.action.BOOT_COMPLETED".equals(intent.getAction()))
 		{
-				SupervisorDashBoard.linkToService(context);
+				//SupervisorDashBoard.linkToService(context);
 
 				Intent myIntent = new Intent(context, GetDataFromServer.class);
 				//myIntent.putExtra("doIndex", "updateOldPath");

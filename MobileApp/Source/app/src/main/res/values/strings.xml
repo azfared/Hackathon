@@ -9,6 +9,6 @@
     <string name="addSupervisor">Add Aupervisor</string>
     <string name="addCamp">Add Camp</string>
     <string name="monitor">Monitor</string>
-    <string name="movingTime">Moving Time</string>
+    <string name="movingTime">Supervisor Dashboard</string>
 
 </resources>

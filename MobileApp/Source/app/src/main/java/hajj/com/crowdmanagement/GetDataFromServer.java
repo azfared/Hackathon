@@ -38,19 +38,17 @@ public class GetDataFromServer extends JobIntentService
     {
         //get the data from server
         System.out.println("Service is ready");
+        String campID = intent.getStringExtra("activeCampId");
         //get the data
-        requestJson(getApplicationContext(), "getMovementOrder");
+        requestJson(getApplicationContext(), "getMovementOrder", "campID="+campID);
 
     }
 
-    public  void requestJson(Context context, String fnName)
+    public  void requestJson(Context context, String fnName, String params)
     {
 
         RequestQueue queue = Volley.newRequestQueue(context);
-        String url = ServerUrl + fnName;
-        //final ProgressDialog pDialog = new ProgressDialog(context);
-        //pDialog.setMessage("Loading...");
-       // pDialog.show();
+        String url = ServerUrl + fnName+"?"+params;
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
                 url, null,
@@ -63,6 +61,7 @@ public class GetDataFromServer extends JobIntentService
                         System.out.println("Res: " +response);
                         //call the SuperVisor Activity
                         Intent dialogIntent = new Intent(getApplicationContext(), SupervisorDashBoard.class);
+                        dialogIntent.putExtra("data", response.toString());
                         dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(dialogIntent);
                     }
