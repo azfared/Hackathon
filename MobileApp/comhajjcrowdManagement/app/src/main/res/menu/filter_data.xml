@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:id="@+id/add_supervisor"
+        android:icon="@drawable/ic_add"
+        android:title="@string/addSupervisor"
+        app:showAsAction="ifRoom|withText"
+        />
+     <item android:id="@+id/add_camp"
+        android:icon="@drawable/ic_add"
+        android:title="@string/addCamp"
+        app:showAsAction="ifRoom|withText"
+        />
+
+    <item android:id="@+id/action_monitor"
+        android:icon="@drawable/ic_monitor"
+        android:title="@string/monitor"
+        app:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/action_moving"
+        android:icon="@drawable/ic_monitor"
+        android:title="@string/movingTime"
+        app:showAsAction="ifRoom|withText" />
+
+</menu>
+

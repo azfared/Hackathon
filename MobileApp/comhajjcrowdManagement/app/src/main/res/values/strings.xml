@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Hajj</string>
+    <string name="name">Name</string>
+    <string name="sp_save_sp">"     Save    "</string>
+    <string name="camp">Camp</string>
+    <string name="campOrder">Moving Order</string>
+    <string name="campSupervisor">Supervisor</string>
+    <string name="company">Company</string>
+    <string name="addSupervisor">Add Aupervisor</string>
+    <string name="addCamp">Add Camp</string>
+    <string name="monitor">Monitor</string>
+    <string name="movingTime">Moving Time</string>
+
+</resources>
